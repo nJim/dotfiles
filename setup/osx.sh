@@ -2,6 +2,7 @@
 
 # Setup machine to match preferred settings.
 # See for inspiration: http://mths.be/osx
+# and https://github.com/sapegin/dotfiles/blob/master/setup/osx.sh
 
 COMPUTERNAME='JimVomero'
 LOCALHOSTNAME='jimvomero'
@@ -20,7 +21,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 sudo scutil --set ComputerName $COMPUTERNAME
 sudo scutil --set HostName $COMPUTERNAME
 sudo scutil --set LocalHostName $LOCALHOSTNAME
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $LOCALHOSTNAME'
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $LOCALHOSTNAME
 
 # Expand save panel by default.
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -47,14 +48,14 @@ defaults write com.apple.BezelServices kDimTime -int 300
 systemsetup -settimezone "America/New_York" > /dev/null
 
 # Increase grid spacing for icons on the desktop and in other icon views.
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 100" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 40" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 40" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 40" ~/Library/Preferences/com.apple.finder.plist
 
 # Increase the size of icons on the desktop and in other icon views.
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 80" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 40" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 40" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 40" ~/Library/Preferences/com.apple.finder.plist
 
 # Reveal IP address, hostname, OS version when clicking the clock in the login window.
 # Revert: defaults delete /Library/Preferences/com.apple.loginwindow AdminHostInfo
@@ -97,7 +98,7 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 ###############################################################################
 
 # Set the icon size of Dock items to 60 pixels
-defaults write com.apple.dock tilesize -int 60
+defaults write com.apple.dock tilesize -int 30
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -110,6 +111,9 @@ defaults write com.apple.dock expose-group-by-app -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+
+# Speed up animation speed of hiding Dock.
+defaults write com.apple.dock autohide-delay -float 0
 
 # Hot corners
 # Top right screen corner → Mission Control

@@ -63,7 +63,10 @@ brew install htop
 brew install links
 brew install imagemagick
 brew install cowsay
+
+# Web Services and Tools
 brew install mysql
+brew install node
 
 ###############################################################################
 # Install Packages with Graphic Interface                                     #

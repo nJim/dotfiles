@@ -1,0 +1,26 @@
+[user]
+  name = Jim Vomero
+  email = jamesvomero@gmail.com
+[core]
+  autocrlf = false
+  safecrlf = false
+  filemode = false
+  ignorecase = false
+  excludesfile = ~/.gitignore_global
+[branch]
+  autosetuprebase = always
+[diff]
+  renames = copies
+[color]
+  ui = true
+[alias]
+  a = apply --index
+  p = format-patch --stdout
+[difftool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/kdiff3/0.9.98/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/kdiff3/0.9.98/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = ~/.stCommitMsg

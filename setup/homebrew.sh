@@ -63,6 +63,8 @@ brew install htop
 brew install links
 brew install imagemagick
 brew install cowsay
+brew install zsh
+brew install zsh-completions
 
 # Web Services and Tools
 brew install mysql

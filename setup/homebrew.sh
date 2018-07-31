@@ -91,7 +91,7 @@ brew cask install spotify
 
 # Collaboration.
 brew cask install slack
-brew cask install zoom
+brew cask install zoomus
 
 # Development tools.
 brew cask install phpstorm

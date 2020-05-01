@@ -7,7 +7,7 @@ command -v xcode-select >/dev/null 2>&1 || {
 }
 
 # Install Homebrew if it is not currently available.
-command -v brew >/dev/null 2>&1 || {
+command -v xcode-selectcommand -v brew >/dev/null 2>&1 || {
   echo >&2 "Installing Homebrew"; \
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 }
@@ -15,7 +15,8 @@ command -v brew >/dev/null 2>&1 || {
 # Clean up all the things.
 brew update
 brew upgrade
-brew prune
+# JFV:brew prune is ddepricated and now runs as part of cleanup
+# brew prune
 brew cleanup
 brew doctor
 
@@ -32,15 +33,21 @@ brew install coreutils
 
 # Install GNU find, locate, updatedb, and xargs.
 # https://www.gnu.org/software/findutils/
-brew install findutils --with-default-names
+# JFV: removed --with-default-names, option deprecated
+#   Must add PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+brew install findutils
 
 # GNU sed has several differences and supports -i.
 # https://www.gnu.org/software/sed/
-brew install gnu-sed --with-default-names
+# JFV: removed --with-default-names, option deprecated; add to $PATH
+#   Must add PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+brew install gnu-sed
 
 # GNU grep is significantly faster and supports -P.
 # https://www.gnu.org/software/grep/
-brew install grep --with-default-names
+# JFV: removed --with-default-names, option deprecated; add to $PATH
+#   Must add PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+brew install grep
 
 ###############################################################################
 # Updated Versions of Utilities on OSX                                        #

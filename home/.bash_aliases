@@ -13,7 +13,7 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 
-# JFV: Not sure what to do about colors, add this as a placeholder
+# Not sure what to do about colors, added this as a placeholder
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
         colorflag="--color"
@@ -25,13 +25,13 @@ fi
 
 # Directory listings
 # LS_COLORS='no=01;37:fi=01;37:di=07;96:ln=01;36:pi=01;32:so=01;35:do=01;35:bd=01;33:cd=01;33:ex=01;31:mi=00;05;37:or=00;05;37:'
-# -G Add colors to ls
-# -l Long format
+# -G Add colors to ls, can be -G or --color
+# -l Long formaj
 # -h Short size suffixes (B, K, M, G, P)
 # -p Postpend slash to folders
 # -F add one char of */=>@| to enteries
 # alias ls='ls -G -h -p '
-alias ll="ls -l -G -h -p" 
+alias ll="ls -l ${colorflag} -h -p" 
 
 # List all files colorized in long format with short size buffers postpend /
 alias ll="ls -l ${colorflag} -h -p"
@@ -45,8 +45,8 @@ alias la="ls -lAF ${colorflag}"
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
-# Always use color output for `ls` or JFV preference
-alias ls="command ls ${colorflag}"
+# Always use color output for `ls` or disable (pick one)
+# alias ls="command ls ${colorflag}"
 alias ls="ls -F"
 
 # Always enable colored `grep` output
@@ -96,6 +96,6 @@ alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Ch
 # Recursively delete `.DS_Store` files
 alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 
-# JFV Unsure of usage, comment out for now
+# Unsure of usage, comment out for now
 # URL-encode strings
 # alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'

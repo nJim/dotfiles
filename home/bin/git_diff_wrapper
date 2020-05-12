@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+if [ 1${2} == 1 ]; then
+  vim $1;
+
+else
+  vimdiff $1 $2;
+fi

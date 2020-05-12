@@ -1,0 +1,14 @@
+.bash_prompt
+.bash_aliases
+.bash_profile
+.bashrc
+.path
+.exports
+.functions
+.vim
+.vim/backups
+.vim/swaps
+.vim/undo
+.vimrc
+bin
+bin/git_diff_wrapper

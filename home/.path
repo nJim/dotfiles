@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Save Homebrew's installed location.
+brew_prefix=$(brew --prefix)
+
+check_brew_path()
+{
+  local formulae=$1
+  echo $PATH | grep -v "${brew_prefix}\/opt\/${formulae}\/" &>/dev/null && export PATH="${brew_prefix}/opt/${formulae}/libexec/gnubin:$PATH"
+}
+
+# brew install coreutils
+  check_brew_path "coreutils"
+# brew install findutils
+  check_brew_path "findutils"
+# brew install gnu-sed
+  check_brew_path "gnu-sed"
+# brew install grep
+  check_brew_path "grep"
+
+unset check_brew_path
+unset brew_prefix
+
+# Unsure and not yet tested/tried; Found these when running brew install
+# If you need to have sqlite first in your PATH run:
+#   export PATH="/usr/local/opt/sqlite/bin:$PATH"
+# If you need to have ruby first in your PATH run:
+#   export PATH="/usr/local/opt/ruby/bin:$PATH"
+# If you need to have openssl@1.1 first in your PATH run:
+#  export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# If you need to have python@3.8 first in your PATH run:
+#   export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+# If you need to have ncurses first in your PATH run:
+#   export PATH="/usr/local/opt/ncurses/bin:$PATH"
+# If you need to have icu4c first in your PATH run:
+#   export PATH="/usr/local/opt/icu4c/bin:$PATH"
+#   export PATH="/usr/local/opt/icu4c/sbin:$PATH"

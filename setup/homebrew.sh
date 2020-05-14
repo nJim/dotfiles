@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Install command-line tools using Homebrew.
 
 # Install xcode-select if it is not currently available (homebrew dependency.)
 command -v xcode-select >/dev/null 2>&1 || {
@@ -7,17 +9,25 @@ command -v xcode-select >/dev/null 2>&1 || {
 }
 
 # Install Homebrew if it is not currently available.
-command -v brew >/dev/null 2>&1 || {
+command -v xcode-selectcommand -v brew >/dev/null 2>&1 || {
   echo >&2 "Installing Homebrew"; \
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 }
 
-# Clean up all the things.
+# Make sure we’re using the latest Homebrew.
 brew update
+
+# Upgrade any already-installed formulae.
 brew upgrade
-brew prune
+
+# Remove stale lock files and outdated downloads
 brew cleanup
+
+# Check for any potiential problems
 brew doctor
+
+# Save Homebrew’s installed location.
+BREW_PREFIX=$(brew --prefix)
 
 ###############################################################################
 # GNU Utilities to Replace BSD Versions                                       #
@@ -28,43 +38,67 @@ brew doctor
 
 # The basic file, shell, and text manipulation utilities of the GNU OS.
 # https://www.gnu.org/software/coreutils/coreutils.html
+# Must add PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
 brew install coreutils
 
 # Install GNU find, locate, updatedb, and xargs.
 # https://www.gnu.org/software/findutils/
-brew install findutils --with-default-names
+# Must add PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
+brew install findutils
 
 # GNU sed has several differences and supports -i.
 # https://www.gnu.org/software/sed/
-brew install gnu-sed --with-default-names
+# Must add PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+brew install gnu-sed
 
 # GNU grep is significantly faster and supports -P.
 # https://www.gnu.org/software/grep/
-brew install grep --with-default-names
+# Must add PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+brew install grep
+
+# More utils looked interesting
+# https://joeyh.name/code/moreutils/
+brew install moreutils
+
+# Install a modern version of Bash.
+brew install bash
+brew install bash-completion2
+
+# Switch to using brew-installed bash as default shell
+if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "${BREW_PREFIX}/bin/bash";
+fi;
+
+# Unsure about these 
+# brew install wget --with-iri
+# brew install gnupg
 
 ###############################################################################
-# Updated Versions of Utilities on OSX                                        #
+# Updated Versions of Utilities on macOS                                      #
 ###############################################################################
 
 # Replace VI with updated VIM build.
 # https://www.vim.org/
-brew install vim --with-override-system-vi
+brew install vim
 
 # Replace native git with updated version.
 # https://git-scm.com/
 brew install git
 
+brew install tkdiff
+k
 ###############################################################################
 # Install Packages                                                            #
 ###############################################################################
 
-brew install wget
 brew install htop
 brew install links
 brew install imagemagick
 brew install cowsay
-brew install zsh
-brew install zsh-completions
+# JFV: Not usig zsh
+# brew install zsh
+# brew install zsh-completions
 
 # Web Services and Tools
 brew install mysql
@@ -123,3 +157,10 @@ brew cask install quicklook-json
 
 # Restart quick look.
 qlmanage -r
+
+###############################################################################
+# Python and VS Code                                                          #
+###############################################################################
+# JFV added other items
+brew install python3
+brew cask install visual-studio-code
